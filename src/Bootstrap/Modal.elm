@@ -6,6 +6,7 @@ module Bootstrap.Modal exposing
     , body, Body
     , footer, Footer
     , withAnimation, subscriptions, hiddenAnimated
+    , scrollable
     )
 
 {-| Modals are streamlined, but flexible dialog prompts. They support a number of use cases from user notifications to completely custom content and feature a handful of helpful subcomponents, sizes, and more.
@@ -287,6 +288,13 @@ hideOnBackdropClick hide (Config ({ options } as conf)) =
 attrs : List (Html.Attribute msg) -> Config msg -> Config msg
 attrs values (Config ({ options } as conf)) =
     Config { conf | options = { options | attrs = values ++ options.attrs } }
+
+
+{-| Use this function to make the Modal scrollable
+-}
+scrollable : Config msg -> Config msg
+scrollable conf =
+    attrs [ Attr.class "modal-dialog-scrollable" ] conf
 
 
 {-| Configure the modal to support fade-in/out animations. You'll need to provide
